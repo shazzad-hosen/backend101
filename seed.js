@@ -4,8 +4,8 @@ const mysql = require("mysql2");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  database: "delta_app",
-  password: "newPassword",
+  database: "delta_app", // name of your database
+  password: " ", // password of your SQL WB
 });
 
 // using faker pacage to generate random users data
