@@ -14,12 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// creating a connection object to work with SQL Queries
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  database: "delta_app",
-  password: "newPassword",
+  database: "delta_app", // name of your working database
+  password: " ", // password of you MySQL WB
 });
 
 // Home Route
@@ -30,7 +29,6 @@ app.get("/", (req, res) => {
       if (error) {
         throw error;
       } else {
-        // "count(*)" is the key of returned object
         let count = result[0]["count(*)"];
         res.render("home.ejs", { count });
       }
@@ -43,7 +41,7 @@ app.get("/", (req, res) => {
 
 // Show Route
 app.get("/user", (req, res) => {
-  let query = `SELECT * FROM user`;
+  let query = `SELECT * FROM user`; // user is the name of our table
   try {
     connection.query(query, (error, users) => {
       if (error) {
@@ -67,7 +65,6 @@ app.get("/user/:id/edit", (req, res) => {
       if (error) {
         throw error;
       } else {
-        // that's gonna return data into result as an array of object
         let user = result[0];
 
         res.render("edit.ejs", { user });
